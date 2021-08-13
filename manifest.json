@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "description": "数据信息采集",
     "author": "数据信息采集",
-    "content_security_policy": "script-src 'self'; object-src 'self'",
+    "content_security_policy": "script-src 'self'; object-src 'self'; script-src-elem 'self'",
     "icons":{
         "16": "img/icon.png",
         "48": "img/icon.png",
@@ -48,7 +48,8 @@
             "js/jquery-1.8.3.js",
             "js/main.js",
             "js/dom.js",
-            "js/enum.js"
+            "js/enum.js",
+            "js/vue.min.js"
         ],
         "run_at": "document_end",
         "all_frames": true

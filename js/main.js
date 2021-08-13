@@ -8,11 +8,6 @@
     const box = $('#box');
     const getOrderList = $('#getOrderList');
 
-    // 数据发送
-    var sendMessageToBackground = function (action, options, callback) {
-        chrome.runtime.sendMessage('', {sign: 'signDxm', action: action, data: options}, callback)
-    };
-
     // 开始采集
     const startGatherDomInit =   (e) => {
 
@@ -33,9 +28,7 @@
 
 
     getOrderList.click(function(res) {
-        sendMessageToBackground('ok_1', null, function(data) {
-            console.log('订单信息数据---', data);
-        })
+ 
     })
 
     /**
@@ -75,7 +68,6 @@
 
     // 结束 dom  发送过来的信息
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-            console.log(request);
             if(request.action === googlePluginEnumLibs.ORDER_LIST) {
                 console.log('订单数据获取到了---', request.data);
                 sendResponse('main - 收到 数据~~~')
