@@ -9,6 +9,8 @@ chrome.browserAction.onClicked.addListener(function(){
     });
 });
 
+
+var dataListOrder = null
 // 监听来自content-script的消息
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
@@ -23,6 +25,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
            backEvent.postHtml(request.data, sendResponse);
            return true
        }
+
 
     }
 	

@@ -6,6 +6,7 @@
     const startCaiDom =  $('#startCai');
     const textarea_1 = $("#textarea_1");
     const box = $('#box');
+    const getOrderList = $('#getOrderList');
 
     // 数据发送
     var sendMessageToBackground = function (action, options, callback) {
@@ -17,15 +18,10 @@
 
         // 获取 文本内容
         var textarea_1_val = textarea_1.val();
-
         if(textarea_1_val) {
-
             getHtml(textarea_1_val, true, function(data) {
                 console.log('1111111', data);
-                
             })
-
-
         
         } else {
         alert('请输入地址--')
@@ -34,6 +30,13 @@
     }
 
     startCaiDom.click(startGatherDomInit);
+
+
+    getOrderList.click(function(res) {
+        sendMessageToBackground('ok_1', null, function(data) {
+            console.log('订单信息数据---', data);
+        })
+    })
 
     /**
      * 
@@ -66,11 +69,19 @@
         console.log(div);
         box.html(div)
     }
-
-
-
  
     window.onload = function() {
     }
+
+    // 结束 dom  发送过来的信息
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+            console.log(request);
+            if(request.action === googlePluginEnumLibs.ORDER_LIST) {
+                console.log('订单数据获取到了---', request.data);
+                sendResponse('main - 收到 数据~~~')
+                
+            }
+        
+    })
 
 // })()
